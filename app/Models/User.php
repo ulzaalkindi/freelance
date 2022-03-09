@@ -71,6 +71,13 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    // one to one
+
+    public function detail_user()
+    {
+        return $this->hasOne('App\Models\DetailUser','users_id');
+    }
+
     public function service()
     {
         return $this->hasMany('App\Models\Service', 'users_id');
