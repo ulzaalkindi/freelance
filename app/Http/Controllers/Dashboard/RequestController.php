@@ -19,7 +19,7 @@ class RequestController extends Controller
 
     public function index()
     {
-        //
+        return view('pages.dashboard.request.index');
     }
 
     /**
@@ -51,7 +51,7 @@ class RequestController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('pages.dashboard.request.detail');
     }
 
     /**
