@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Models\User;
-use App\Models\DetailUser;
-use Illuminate\Http\Request;
-
-use App\Models\ExperienceUser;
-
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
-use Illuminate\Support\Facades\File;
-
-use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpFoundation\Response;
 use App\Http\Requests\Dashboard\Profile\UpdateProfileRequest;
 use App\Http\Requests\Dashboard\Profile\UpdateDetailUserRequest;
+
+use Illuminate\Support\Facades\Storage;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+
+use App\Models\User;
+use App\Models\DetailUser;
+use App\Models\ExperienceUser;
 
 class ProfileController extends Controller
 {
@@ -119,6 +120,31 @@ class ProfileController extends Controller
         // proses save to detail user
         $detail_user = DetailUser::find($user->detail_user->id);
         $detail_user->update($data_detail_user);
+
+        // proses save to experience
+        $experience_user_id = ExperienceUser::where('detail_user_id',$detail_user['id'])->first();
+        if(isset($experience_user_id)){
+
+            foreach($data_profile['experience'] as $key => $value){
+                $experience_user = ExperienceUser::find($key);
+                $experience_user->detail_user_id = $detail_user['id'];
+                $experience_user->experience = $value;
+                $experience_user->save();
+            }
+
+        } else {
+
+            foreach($data_profile['experience'] as $key => $value) {
+                if(isset($value)){
+                    $experience_user = new ExperienceUser;
+                    $experience_user->detail_user_id = $detail_user['id'];
+                    $experience_user->experince = $value;
+                    $experience_user->save();
+                }
+            }
+        }
+        toast()->success('Update has been success');
+        return back();
     }
 
     /**
@@ -137,6 +163,22 @@ class ProfileController extends Controller
 
     public function delete()
     {
+        // get users
+        $get_user_photo = DetailUser::where('users_id',Auth::user()->id)->first();
+        $path_photo = $get_user_photo['photo'];
+        // second update value to null
+        $data = DetailUser::find($get_user_photo['id']);
+        $data->photo = null;
+        $data->save();
 
+        // delete file photo
+        $data = 'storage/'.$path_photo;
+        if(File::exists($data)){
+            File::delete($data);
+        }else {
+            File::delete('storage/app/public'.$path_photo);
+        }
+        toast()->success('Delete has been success');
+        return back();
     }
 }
