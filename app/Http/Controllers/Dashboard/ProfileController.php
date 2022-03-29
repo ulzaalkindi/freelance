@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\File;
 use App\Models\User;
 use App\Models\DetailUser;
 use App\Models\ExperienceUser;
+use Alert;
 
 class ProfileController extends Controller
 {
@@ -122,26 +123,27 @@ class ProfileController extends Controller
         $detail_user->update($data_detail_user);
 
         // proses save to experience
-        $experience_user_id = ExperienceUser::where('detail_user_id',$detail_user['id'])->first();
+        $experience_user_id = ExperienceUser::where('detail_user_id', $detail_user['id'])->first();
         if(isset($experience_user_id)){
 
-            foreach($data_profile['experience'] as $key => $value){
+            foreach ($data_profile['experience'] as $key => $value) {
                 $experience_user = ExperienceUser::find($key);
                 $experience_user->detail_user_id = $detail_user['id'];
                 $experience_user->experience = $value;
                 $experience_user->save();
             }
 
-        } else {
+        }else{
 
-            foreach($data_profile['experience'] as $key => $value) {
+            foreach ($data_profile['experience'] as $key => $value) {
                 if(isset($value)){
                     $experience_user = new ExperienceUser;
                     $experience_user->detail_user_id = $detail_user['id'];
-                    $experience_user->experince = $value;
+                    $experience_user->experience = $value;
                     $experience_user->save();
                 }
             }
+
         }
         toast()->success('Update has been success');
         return back();

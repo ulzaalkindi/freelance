@@ -1827,8 +1827,7 @@ body {
     }
 }
 .list-check li {
-    background: url(./images/check-icon.svg?cf292924fda5b225c06098c9ffb173a9)
-        no-repeat left center;
+    background: url(../assets/images/check-icon.svg) no-repeat left center;
     list-style: none;
 }
 .hover\:bg-gray-50:hover {

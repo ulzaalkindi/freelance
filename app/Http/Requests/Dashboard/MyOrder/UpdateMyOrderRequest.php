@@ -30,7 +30,7 @@ class UpdateMyOrderRequest extends FormRequest
             'buyer_id' => [
                 'nullable','integer',
             ],
-            'freelance_id' => [
+            'freelancer_id' => [
                 'nullable','integer',
             ],
             'service_id' => [

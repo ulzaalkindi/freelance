@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
 
     @include('includes.dashboard.meta')
@@ -13,11 +14,12 @@
     @stack('after-style')
 
 </head>
+
 <body class="antialiased">
     <div class="relative">
 
         @include('includes.landing.header')
-        {{-- @include('sweetalert::alert') --}}
+        @include('sweetalert::alert')
 
         @yield('content')
 
@@ -36,4 +38,5 @@
 
     </div>
 </body>
+
 </html>

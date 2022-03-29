@@ -38,7 +38,7 @@ class MemberController extends Controller
         $completed = Order::where('freelancer_id',Auth::user()->id)
                         ->where('order_status_id',1)
                         ->count();
-        $freelancer = Order::where('freelancer_id',Auth::user()->id)
+        $freelancer = Order::where('buyer_id',Auth::user()->id)
                         ->where('order_status_id',2)
                         ->distinct('freelancer_id')
                         ->count();

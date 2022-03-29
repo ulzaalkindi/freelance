@@ -4,10 +4,13 @@
     x-transition:leave="transition ease-in-out duration-150" x-transition:leave-start="opacity-100"
     x-transition:leave-end="opacity-0 transform -translate-x-20" @click.away="closeSideMenu"
     @keydown.escape="closeSideMenu" aria-label="aside">
+
     <div class="py-4 text-gray-500 dark:text-gray-400">
+
         <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="#">
             <img src="{{ asset('/assets/images/logo.svg') }}" alt="" class="ml-6">
         </a>
+
         <div class="flex items-center pt-5 pl-5 mt-10 space-x-2 border-t border-gray-100">
             <!--Author's profile photo-->
             <img class="object-cover object-center mr-1 rounded-full w-14 h-14"
@@ -20,12 +23,15 @@
                 </p>
             </div>
         </div>
+
         <ul class="mt-6">
             <li class="relative px-6 py-3">
-                @if (request()->is('member/dashboard') || request()->is('member/profile/*') || request()->is('member/*/dashboard') || request()->is('member/*/dashboard/*'))
+
+                @if (request()->is('member/dashboard') || request()->is('member/dashboard/*') || request()->is('member/*/dashboard') || request()->is('member/*/dashboard/*'))
                     <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-serv-bg"
                         aria-hidden="true"></span>
                 @endif
+
                 <a class="inline-flex items-center w-full text-sm font-medium text-gray-800 transition-colors duration-150 hover:text-gray-800"
                     href="{{ route('member.dashboard.index') }}">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,12 +43,16 @@
                 </a>
             </li>
         </ul>
+
         <ul>
+
             <li class="relative px-6 py-3">
-                @if (request()->is('member/dashboard') || request()->is('member/profile/*') || request()->is('member/*/dashboard') || request()->is('member/*/dashboard/*'))
+
+                @if (request()->is('member/service') || request()->is('member/service/*') || request()->is('member/*/service') || request()->is('member/*/service/*'))
                     <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-serv-bg"
                         aria-hidden="true"></span>
                 @endif
+
                 <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
                     href="{{ route('member.service.index') }}">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -64,11 +74,14 @@
 
                 </a>
             </li>
+
             <li class="relative px-6 py-3">
-                @if (request()->is('member/dashboard') || request()->is('member/profile/*') || request()->is('member/*/dashboard') || request()->is('member/*/dashboard/*'))
+
+                @if (request()->is('member/request') || request()->is('member/request/*') || request()->is('member/*/request') || request()->is('member/*/request/*'))
                     <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-serv-bg"
                         aria-hidden="true"></span>
                 @endif
+
                 <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
                     href="{{ route('member.request.index') }}">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -90,11 +103,14 @@
 
                 </a>
             </li>
+
             <li class="relative px-6 py-3">
-                @if (request()->is('member/dashboard') || request()->is('member/profile/*') || request()->is('member/*/dashboard') || request()->is('member/*/dashboard/*'))
+
+                @if (request()->is('member/order') || request()->is('member/order/*') || request()->is('member/*/order') || request()->is('member/*/order/*'))
                     <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-serv-bg"
                         aria-hidden="true"></span>
                 @endif
+
                 <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
                     href="{{ route('member.order.index') }}">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -120,11 +136,14 @@
 
                 </a>
             </li>
+
             <li class="relative px-6 py-3">
-                @if (request()->is('member/dashboard') || request()->is('member/profile/*') || request()->is('member/*/dashboard') || request()->is('member/*/dashboard/*'))
+
+                @if (request()->is('member/profile') || request()->is('member/profile/*') || request()->is('member/*/profile') || request()->is('member/*/profile/*'))
                     <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-serv-bg"
                         aria-hidden="true"></span>
                 @endif
+
                 <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
                     href="{{ route('member.profile.index') }}">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -143,10 +162,12 @@
                     <span class="ml-4">Edit Profile</span>
                 </a>
             </li>
+
             <li class="relative px-6 py-3">
                 <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
                     href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('form-logout').submit();">
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="24" height="24" fill="white" />
                         <path
@@ -156,13 +177,16 @@
                             stroke="#082431" stroke-width="1.5" stroke-linecap="round" />
                         <path d="M9.5 12L20 12" stroke="#082431" stroke-width="1.5" stroke-linecap="round" />
                     </svg>
+
                     <span class="ml-4">Log out</span>
 
-                    <form action="{{ route('logout') }}" method="POST" id="form-logout" style="display: none;">
+                    <form action="{{ route('logout') }}" id="logout-form" method="POST" style="display: none;">
                         @csrf
                     </form>
                 </a>
             </li>
+
         </ul>
+
     </div>
 </aside>
